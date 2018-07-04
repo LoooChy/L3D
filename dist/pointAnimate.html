@@ -215,7 +215,6 @@
                             }
 
 
-
                         }
                     }
 
@@ -226,18 +225,24 @@
                 },
                 createObj: function (TH) {//创建三维物体
                     var loader1 = new THREE.JSONLoader();
-                    loader1.load("modle/m4.json", function (geometry) {
 
-                        var bb = geometry.vertices.length
+                    function load1(resolve, reject) {
+                        loader1.load("modle/m4.json", function (geometry) {
+                            var bb = geometry.vertices.length
 
-                        for (var i = 0; i < bb; i++) {
-                            var aa = TH.createSphere({ a: 0.3, b: 2, c: 2, x: geometry.vertices[i].x * 50 - 0, y: geometry.vertices[i].y * 50, z: geometry.vertices[i].z * 50, color: "#3498db", name: "men" + i, hide: false, isObject3D: true });
-                            positions1.push({ x: geometry.vertices[i].x * 50 - 0, y: geometry.vertices[i].y * 50, z: geometry.vertices[i].z * 50 })
-                            TH.scene.add(aa)
-                            objects.push(aa)
-                        }
+                            for (var i = 0; i < bb; i++) {
+                                var aa = TH.createSphere({ a: 0.3, b: 2, c: 2, x: geometry.vertices[i].x * 50 - 0, y: geometry.vertices[i].y * 50, z: geometry.vertices[i].z * 50, color: "#3498db", name: "men" + i, hide: false, isObject3D: true });
+                                positions1.push({ x: geometry.vertices[i].x * 50 - 0, y: geometry.vertices[i].y * 50, z: geometry.vertices[i].z * 50 })
+                                TH.scene.add(aa)
+                                objects.push(aa)
+                            }
+                            load2()
+                        });
 
-                        var aaa;
+                    }
+
+
+                    function load2(resolve, reject) {
                         loader1.load("modle/m3.json", function (geometry) {
                             // geometry.rotateX(-Math.PI/2)
                             // geometry.rotation.x = -Math.PI/2;
@@ -245,37 +250,70 @@
                             for (var i = 0; i < cc; i++) {
                                 var aas = TH.createSphere({ a: 0.3, b: 2, c: 2, x: geometry.vertices[i].x * 100 + 100, y: geometry.vertices[i].y * 100, z: geometry.vertices[i].z * 100, color: "#3498db", name: "boll" + i, hide: false, isObject3D: true });
                                 positions2.push({ x: geometry.vertices[i].x * 100 + 100, y: geometry.vertices[i].y * 100, z: geometry.vertices[i].z * 100 })
-                                // TH.scene.add(aas)
                                 objects.push(aas)
                             }
-                            loader1.load("modle/m2.json", function (geometry) {
-                                // geometry.rotateX(-Math.PI/2)
-                                // geometry.rotation.x = -Math.PI/2;
-                                var ccs = geometry.vertices.length
-                                for (var i = 0; i < ccs; i++) {
-                                    var aass = TH.createSphere({ a: 0.3, b: 2, c: 2, x: geometry.vertices[i].x * 100 + 100, y: geometry.vertices[i].y * 100, z: geometry.vertices[i].z * 100, color: "#3498db", name: "bui" + i, hide: false, isObject3D: true });
-                                    positions3.push({ x: geometry.vertices[i].x * 100 + 100, y: geometry.vertices[i].y * 100, z: geometry.vertices[i].z * 100 })
-                                    // TH.scene.add(aas)
-                                    objects.push(aass)
-                                }
-                                positionsAll = [...positions1, ...positions2, ...positions3]
-                                transition(TH)
-
-                            });
-
+                            load3()
                         });
-                    });
-
-                    function jk(a, b) {
-                        if (a < b) {
-                            return b - a;
-                        } else if (a >= b) {
-                            return a;
-                        } else {
-
-                        }
 
                     }
+                    function load3(resolve, reject) {
+                        loader1.load("modle/m2.json", function (geometry) {
+                            // geometry.rotateX(-Math.PI/2)
+                            // geometry.rotation.x = -Math.PI/2;
+                            var ccs = geometry.vertices.length
+                            for (var i = 0; i < ccs; i++) {
+                                var aass = TH.createSphere({ a: 0.3, b: 2, c: 2, x: geometry.vertices[i].x * 100 + 100, y: geometry.vertices[i].y * 100, z: geometry.vertices[i].z * 100, color: "#3498db", name: "bui" + i, hide: false, isObject3D: true });
+                                positions3.push({ x: geometry.vertices[i].x * 100 + 100, y: geometry.vertices[i].y * 100, z: geometry.vertices[i].z * 100 })
+                                objects.push(aass)
+                            }
+                            positionsAll = [...positions1, ...positions2, ...positions3]
+
+                            transition(TH)
+                        });
+
+                    }
+                    var promis = new Promise(load1)
+                    promis.then(load2).then(load3)
+
+                    // loader1.load("modle/m4.json", function (geometry) {
+                    //     var bb = geometry.vertices.length
+
+                    //     for (var i = 0; i < bb; i++) {
+                    //         var aa = TH.createSphere({ a: 0.3, b: 2, c: 2, x: geometry.vertices[i].x * 50 - 0, y: geometry.vertices[i].y * 50, z: geometry.vertices[i].z * 50, color: "#3498db", name: "men" + i, hide: false, isObject3D: true });
+                    //         positions1.push({ x: geometry.vertices[i].x * 50 - 0, y: geometry.vertices[i].y * 50, z: geometry.vertices[i].z * 50 })
+                    //         TH.scene.add(aa)
+                    //         objects.push(aa)
+                    //     }
+
+                    //     var aaa;
+                    //     loader1.load("modle/m3.json", function (geometry) {
+                    //         // geometry.rotateX(-Math.PI/2)
+                    //         // geometry.rotation.x = -Math.PI/2;
+                    //         var cc = geometry.vertices.length
+                    //         for (var i = 0; i < cc; i++) {
+                    //             var aas = TH.createSphere({ a: 0.3, b: 2, c: 2, x: geometry.vertices[i].x * 100 + 100, y: geometry.vertices[i].y * 100, z: geometry.vertices[i].z * 100, color: "#3498db", name: "boll" + i, hide: false, isObject3D: true });
+                    //             positions2.push({ x: geometry.vertices[i].x * 100 + 100, y: geometry.vertices[i].y * 100, z: geometry.vertices[i].z * 100 })
+                    //             objects.push(aas)
+                    //         }
+                    //         loader1.load("modle/m2.json", function (geometry) {
+                    //             // geometry.rotateX(-Math.PI/2)
+                    //             // geometry.rotation.x = -Math.PI/2;
+                    //             var ccs = geometry.vertices.length
+                    //             for (var i = 0; i < ccs; i++) {
+                    //                 var aass = TH.createSphere({ a: 0.3, b: 2, c: 2, x: geometry.vertices[i].x * 100 + 100, y: geometry.vertices[i].y * 100, z: geometry.vertices[i].z * 100, color: "#3498db", name: "bui" + i, hide: false, isObject3D: true });
+                    //                 positions3.push({ x: geometry.vertices[i].x * 100 + 100, y: geometry.vertices[i].y * 100, z: geometry.vertices[i].z * 100 })
+                    //                 // TH.scene.add(aas)
+                    //                 objects.push(aass)
+                    //             }
+                    //             positionsAll = [...positions1, ...positions2, ...positions3]
+                    //             transition(TH)
+
+                    //         });
+
+                    //     });
+                    // });
+
+
                     function transition(TH) {
                         var TH = TH
 
