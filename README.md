@@ -3,23 +3,15 @@
 ### 版本
         0.1 DEV
 ### 依赖文件
-        three.js , OrbitControls.js , tween.min.js , L.js , L3D.js , MTLLoader.js , OBJLoader.js , inflate.min.js , FBXLoader.js , STLLoader.js
+         L3D.js 
 
-### 说明
-        目前版本的依赖文件较多，在后续的版本中会只有一个L3D.js文件
+### 感谢
+        感谢threejs以及TWEENjs的相关开发人员
+        
 
 ### 用法 ###
 html
 ```html
-    <script src="js/three.js"></script>
-    <script src="js/OrbitControls.js"></script>
-    <script src="js/loaders/MTLLoader.js"></script>
-    <script src="js/loaders/OBJLoader.js"></script>
-    <script src="js/loaders/inflate.min.js"></script>
-    <script src="js/loaders/FBXLoader.js"></script>
-    <script src="js/loaders/STLLoader.js"></script>
-    <script src="js/tween.min.js"></script>
-    <script src="js/L.js"></script>
     <script src="js/L3D.js"></script>
 
     <div id="canvas-frame"></div> 
