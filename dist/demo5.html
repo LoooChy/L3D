@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>3D</title>
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background: url(images/3dbg1.png)no-repeat;
+            background-size: cover;
+        }
+
+        #canvas-frame {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="canvas-frame"></div>
+    <script src="./js/L3D.js"></script>
+    <script>
+
+        window.onload = function () {
+            var elementWidth = L.select("#canvas-frame").offsetWidth,
+                elementHeight = L.select("#canvas-frame").offsetHeight,
+                roa = 0;
+            new L3D({
+                el: "#canvas-frame",
+                viewport: [elementWidth, elementHeight],
+                render: {
+                    antialias: true,
+                    alpha: false,
+                },
+                camera: {
+                    position: [0, 240, 350],
+                    controls: true,
+                },
+                light: [{
+                    type: "环境光",
+                    position: [0, 50, 0],
+                    intensity: 1,
+                    color: "#ffffff",
+                    name: "light1"
+                }, {
+                    type: "平行光",
+                    position: [100, 50, 100],
+                    intensity: 1,
+                    color: "#ffffff",
+                    name: "light2"
+                }],
+                axis: {
+                    isOpen: true,
+                    length: 100
+                },
+                bindHandler: function (TH) {
+
+                },
+                ray: function (TH, obj) {
+
+                },
+                createObj: function (TH) {
+                    TH.createBox({
+                        a: 30,
+                        b: 10,
+                        c: 5,
+                        x: 0,
+                        y: 0,
+                        z: 0,
+                        color: "#ffffff",
+                        name: "cube",
+                        texture: TH.loaderTexture(['../images/brick_diffuse.jpg', 2, 0.5])
+                    });
+                },
+                animate: function (TH) {
+                    
+                }
+            })
+        }
+
+    </script>
+</body>
+
+</html>

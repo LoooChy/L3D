@@ -2,7 +2,6 @@ const path = require('path');
 const glob = require('glob');
 
 
-
 // const uglify = require('uglifyjs-webpack-plugin');
 
 
@@ -31,8 +30,9 @@ module.exports = {
     mode: developMode,//开发模式
     //文件入口地址
     entry: {
-        "js/main": './src/main.js',//key是目录名称
-        // "js/lib/common": './src/js/lib/common.js'
+        // "js/main": './src/main.js',//key是目录名称
+        "js/L3D": './src/js/lib/L3D.js',//key是目录名称
+        // "js/main": './src/js/lib/loaders/inflate.min.js'
     },
     //用来追踪哪个文件报错
     // devtool: 'inline-source-map',//没发现起作用
@@ -44,7 +44,7 @@ module.exports = {
     },
     plugins: [
         //用来清理打包的目录,在打包的时候启用，平时开发的时候可以关闭
-        new CleanWebpackPlugin(['dist']),
+        // new CleanWebpackPlugin(['dist']),
 
         //热更新相关
         new webpack.NamedModulesPlugin(),
@@ -56,7 +56,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: '我的网页',//网页的名字，可以不用管
             filename: 'index.html',//打包生成的路径
-            template: 'src/modle/index.html'//文件路径
+            template: 'src/index.html'//文件路径
         }),
 
         //抽取css

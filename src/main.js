@@ -7,7 +7,7 @@ import './css/style.scss';
 //js
 import './js/lib/jquery.js';
 
-import './js/test_model.js';
+// import './js/test_model.js';
 
 
 
