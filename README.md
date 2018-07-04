@@ -8,6 +8,10 @@
 ### 感谢
         感谢threejs以及TWEENjs的相关开发人员
         
+## 说明
+        1.下载dist
+        2.请自行配置服务器运行项目
+        3.dist文件夹中的severce.js在本地有node环境下时，可以当做一个临时服务器，只需修改里面的路径即可。
 
 ### 用法 ###
 html
@@ -28,7 +32,7 @@ js
     window.onload = function{
         var elementWidth = L.select("#canvas-frame").offsetWidth,
             elementHeight = L.select("#canvas-frame").offsetHeight;
-        L3D.init({
+        new L3D({
             el: "#canvas-frame",
             viewport: [elementWidth, elementHeight],
             render: {
@@ -268,5 +272,7 @@ name | 光的名称 | string
     如果只需要显示材质的颜色，可以把color去掉。
 
 ### 使用动画函数来创建一个动画
+
+     未完待续...
 
     
