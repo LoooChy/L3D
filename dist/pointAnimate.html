@@ -227,7 +227,6 @@
                 createObj: function (TH) {//创建三维物体
                     var loader1 = new THREE.JSONLoader();
                     loader1.load("modle/m4.json", function (geometry) {
-                        console.log(geometry, "geometry")
 
                         var bb = geometry.vertices.length
 
@@ -240,7 +239,6 @@
 
                         var aaa;
                         loader1.load("modle/m3.json", function (geometry) {
-                            console.log(geometry);
                             // geometry.rotateX(-Math.PI/2)
                             // geometry.rotation.x = -Math.PI/2;
                             var cc = geometry.vertices.length
@@ -251,7 +249,6 @@
                                 objects.push(aas)
                             }
                             loader1.load("modle/m2.json", function (geometry) {
-                                console.log(geometry);
                                 // geometry.rotateX(-Math.PI/2)
                                 // geometry.rotation.x = -Math.PI/2;
                                 var ccs = geometry.vertices.length
@@ -293,14 +290,11 @@
                         }
 
                         var duration = 1000;
-                        console.log(offset)
                         /////////////////////////////////////////////////
-                        console.log(positionsAll, objects)
                         for (var i = 0, j = offset; i < objects.length; i++) {
 
 
                             // if (current == 0) {
-                            // console.log(111)
                             j--;
                             if (current == 0) {
                                 if (j > 0 && j >= positions1.length) {
@@ -367,40 +361,9 @@
                                 }
                             }
 
-
-
-
-                            // } else if (current == 1) {
-                            // var object = objects[i];
-                            // // console.log(222)
-                            // var amObj5 = {//机箱内部的loading状态
-                            //     from: object.position,//动画开始的初始值
-                            //     to: { x: positionsAll[j + positions1.length], y: positionsAll[j + 1 + positions1.length], z: positionsAll[j + 2 + positions1.length] },//动画结束的目标值
-
-                            //     type: TWEEN.Easing.Exponential.InOut,//动画的类型
-                            //     time: Math.random() * duration + duration,//持续时间
-                            //     startNow: true,//是否立即开始
-                            //     // delay: 8000//动画延迟执行
-                            // }
-                            // TH.animateFn(amObj5);
-                            // } else if (current == 2) {
-                            // var object = objects[i];
-                            // // console.log(222)
-                            // var amObj5 = {//机箱内部的loading状态
-                            //     from: object.position,//动画开始的初始值
-                            //     to: { x: positionsAll[j + jk(positions1.length + positions2.length, positions3.length)], y: positionsAll[j + 1 + jk(positions1.length + positions2.length, positions3.length)], z: positionsAll[j + 2 + jk(positions1.length + positions2.length, positions3.length)] },//动画结束的目标值
-                            //     type: TWEEN.Easing.Exponential.InOut,//动画的类型
-                            //     time: Math.random() * duration + duration,//持续时间
-                            //     startNow: true,//是否立即开始
-                            //     // delay: 8000//动画延迟执行
-                            // }
-                            // TH.animateFn(amObj5);
-                            // }
-
                         }
 
                         //////////////////////////////////////////////
-                        // console.log(this)
                         new TWEEN.Tween(this)
                             .to({}, duration * 3)
                             .onComplete(function () {
