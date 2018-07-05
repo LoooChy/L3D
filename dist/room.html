@@ -223,30 +223,67 @@
                 },
                 createObj: function (TH) {//创建三维物体
                     //房间墙壁
-                    TH.createBox({ a: 200, b: 60, c: 5, x: 0, y: 0, z: -60, color: "#888888", name: "wallBack", texture: TH.loaderTexture(['../images/brick_diffuse.jpg', 2, 0.5]) });
-                    TH.createBox({ a: 5, b: 60, c: 125, x: -100, y: 0, z: 0, color: "#888888", name: "wallLeft", texture: TH.loaderTexture(['../images/brick_diffuse.jpg', 2, 0.5]) });
-                    TH.createBox({ a: 5, b: 60, c: 125, x: 100, y: 0, z: 0, color: "#888888", name: "wallRight", texture: TH.loaderTexture(['../images/brick_diffuse.jpg', 2, 0.5]) });
-                    TH.createBox({ a: 400, b: 1, c: 250, x: 0, y: -29.8, z: 0, color: "#888888", name: "wallBottm", texture: TH.loaderTexture(['../images/floor.jpg', 10, 10]) });
-                    TH.createBox({ a: 195, b: 10, c: 5, x: 0, y: 25, z: 60, color: "#888888", name: "wallTop1", texture: TH.loaderTexture(['../images/brick_diffuse.jpg', 2, 0.1]) });
-                    TH.createBox({ a: 40, b: 45 + 4, c: 5, x: -77.5, y: -2.5 - 2, z: 60, color: "#888888", name: "wallTop2", texture: TH.loaderTexture(['../images/brick_diffuse.jpg', 0.35, 0.5]) });
-                    TH.createBox({ a: 10, b: 45 + 4, c: 5, x: -77.5 + 40 + 20 + 10 - 2.5 - 2.5, y: -2.5 - 2, z: 60, color: "#888888", name: "wallTop3", texture: TH.loaderTexture(['../images/brick_diffuse.jpg', 0.1, 0.5]) });
-                    TH.createBox({ a: 10, b: 45 + 4, c: 5, x: 95 - 2.5, y: -2.5 - 2, z: 60, color: "#888888", name: "wallTop4", texture: TH.loaderTexture(['../images/brick_diffuse.jpg', 0.1, 0.5]) });
-                    TH.createBox({ a: 95, b: 5, c: 5, x: 40, y: -22.5 - 4, z: 60, color: "#888888", name: "wallTop5", texture: TH.loaderTexture(['../images/brick_diffuse.jpg', 1.5, 0.05]) });
+                    TH.loaderTexture(['../images/brick_diffuse.jpg', 2, 0.5], function (texture) {
+                        TH.createBox({ a: 200, b: 60, c: 5, x: 0, y: 0, z: -60, color: "#888888", name: "wallBack", texture: texture });
+                    })
+
+                    TH.loaderTexture(['../images/brick_diffuse.jpg', 2, 0.5], function (texture) {
+                        TH.createBox({ a: 5, b: 60, c: 125, x: -100, y: 0, z: 0, color: "#888888", name: "wallLeft", texture: texture });
+                    })
+
+                    TH.loaderTexture(['../images/brick_diffuse.jpg', 2, 0.5], function (texture) {
+                        TH.createBox({ a: 5, b: 60, c: 125, x: 100, y: 0, z: 0, color: "#888888", name: "wallRight", texture: texture });
+                    })
+
+                    TH.loaderTexture(['../images/floor.jpg', 10, 10], function (texture) {
+                        TH.createBox({ a: 400, b: 1, c: 250, x: 0, y: -29.8, z: 0, color: "#888888", name: "wallBottm", texture: texture });
+                    })
+
+                    TH.loaderTexture(['../images/brick_diffuse.jpg', 2, 0.1], function (texture) {
+                        TH.createBox({ a: 195, b: 10, c: 5, x: 0, y: 25, z: 60, color: "#888888", name: "wallTop1", texture: texture });
+                    })
+
+                    TH.loaderTexture(['../images/brick_diffuse.jpg', 0.35, 0.5], function (texture) {
+                        TH.createBox({ a: 40, b: 45 + 4, c: 5, x: -77.5, y: -2.5 - 2, z: 60, color: "#888888", name: "wallTop2", texture: texture });
+                    })
+
+                    TH.loaderTexture(['../images/brick_diffuse.jpg', 0.1, 0.5], function (texture) {
+                        TH.createBox({ a: 10, b: 45 + 4, c: 5, x: -77.5 + 40 + 20 + 10 - 2.5 - 2.5, y: -2.5 - 2, z: 60, color: "#888888", name: "wallTop3", texture: texture });
+                    })
+
+                    TH.loaderTexture(['../images/brick_diffuse.jpg', 0.1, 0.5], function (texture) {
+                        TH.createBox({ a: 10, b: 45 + 4, c: 5, x: 95 - 2.5, y: -2.5 - 2, z: 60, color: "#888888", name: "wallTop4", texture: texture });
+                    })
+
+                    TH.loaderTexture(['../images/brick_diffuse.jpg', 1.5, 0.05], function (texture) {
+                        TH.createBox({ a: 95, b: 5, c: 5, x: 40, y: -22.5 - 4, z: 60, color: "#888888", name: "wallTop5", texture: texture });
+                    })
+
                     //房间墙壁玻璃
                     TH.createBox({ a: 95, b: 40 + 5, c: 2, x: 40, y: -2.5, z: 60, color: "#998877", name: "window1" });
                     TH.scene.getObjectByName("window1").material.transparent = true;
                     TH.scene.getObjectByName("window1").material.opacity = 0.6;
 
                     //外侧墙壁
-                    TH.createBox({ a: 5, b: 10, c: 250, x: -197.5, y: -24.3, z: 0, color: "#665544", name: "wallLeft1", texture: TH.loaderTexture(['../images/hardwood2_diffuse.jpg', 1, 0.2]) });
-                    TH.createBox({ a: 5, b: 5, c: 250, x: -197.5, y: -24.3 + 20 + 17.5, z: 0, color: "#665544", name: "wallLeft3", texture: TH.loaderTexture(['../images/hardwood2_diffuse.jpg', 1, 0.2]) });
+                    TH.loaderTexture(['../images/hardwood2_diffuse.jpg', 1, 0.2], function (texture) {
+                        TH.createBox({ a: 5, b: 10, c: 250, x: -197.5, y: -24.3, z: 0, color: "#665544", name: "wallLeft1", texture: texture });
+                    })
+
+                    TH.loaderTexture(['../images/hardwood2_diffuse.jpg', 1, 0.2], function (texture) {
+                        TH.createBox({ a: 5, b: 5, c: 250, x: -197.5, y: -24.3 + 20 + 17.5, z: 0, color: "#665544", name: "wallLeft3", texture: texture });
+                    })
                     //外侧墙壁玻璃
                     TH.createBox({ a: 2, b: 30, c: 250, x: -197.5, y: -24.3 + 20, z: 0, color: "#334455", name: "wallLeft2" });
                     TH.scene.getObjectByName("wallLeft2").material.transparent = true;
                     TH.scene.getObjectByName("wallLeft2").material.opacity = 0.6;
 
-                    TH.createBox({ a: 5, b: 10, c: 250, x: 197.5, y: -24.3, z: 0, color: "#665544", name: "wallRight1", texture: TH.loaderTexture(['../images/hardwood2_diffuse.jpg', 1, 0.2]) });
-                    TH.createBox({ a: 5, b: 5, c: 250, x: 197.5, y: -24.3 + 20 + 17.5, z: 0, color: "#665544", name: "wallRight3", texture: TH.loaderTexture(['../images/hardwood2_diffuse.jpg', 1, 0.2]) });
+                    TH.loaderTexture(['../images/hardwood2_diffuse.jpg', 1, 0.2], function (texture) {
+                        TH.createBox({ a: 5, b: 10, c: 250, x: 197.5, y: -24.3, z: 0, color: "#665544", name: "wallRight1", texture: texture });
+                    })
+
+                    TH.loaderTexture(['../images/hardwood2_diffuse.jpg', 1, 0.2], function (texture) {
+                        TH.createBox({ a: 5, b: 5, c: 250, x: 197.5, y: -24.3 + 20 + 17.5, z: 0, color: "#665544", name: "wallRight3", texture: texture });
+                    })
                     //外侧墙壁玻璃
                     TH.createBox({ a: 2, b: 30, c: 250, x: 197.5, y: -24.3 + 20, z: 0, color: "#334455", name: "wallRight2" });
                     TH.scene.getObjectByName("wallRight2").material.transparent = true;
@@ -255,56 +292,89 @@
                     //创建门
                     var floorLeft = new THREE.Object3D();
                     var floorRight = new THREE.Object3D();
-                    floorLeft.add(TH.createBox({ a: 20, b: 45 + 4, c: 0.5, x: 10, y: 0 - 2, z: 0, color: "#885522", name: "floor1", isObject3D: "Object3D", texture: TH.loaderTexture(['../images/hardwood2_diffuse.jpg', 0.1, 1]) }));//left
-                    floorRight.add(TH.createBox({ a: 20, b: 45 + 4, c: 0.5, x: -10, y: 0 - 2, z: 0, color: "#336699", name: "floor2", isObject3D: "Object3D", texture: TH.loaderTexture(['../images/hardwood2_diffuse.jpg', 0.1, 1]) }));//right
-                    floorLeft.position.set(-77.5 + 30, -2.5, 60);
-                    floorLeft.translateX(-10);
+                    TH.loaderTexture(['../images/hardwood2_diffuse.jpg', 0.1, 1], function (texture) {
+                        floorLeft.add(TH.createBox({ a: 20, b: 45 + 4, c: 0.5, x: 10, y: 0 - 2, z: 0, color: "#885522", name: "floor1", isObject3D: "Object3D", texture: texture }))
+                        floorLeft.position.set(-77.5 + 30, -2.5, 60);
+                        floorLeft.translateX(-10);
+                        TH.params.allMesh.push(floorLeft.children[0]);
+                        TH.scene.add(floorLeft);
+                    })
 
-                    floorRight.position.set(-77.5 + 30 + 20, -2.5, 60);
-                    floorRight.translateX(10);
-                    TH.params.allMesh.push(floorLeft.children[0]);
-                    TH.params.allMesh.push(floorRight.children[0]);
-                    TH.scene.add(floorLeft);
-                    TH.scene.add(floorRight);
+                    TH.loaderTexture(['../images/hardwood2_diffuse.jpg', 0.1, 1], function (texture) {
+                        floorRight.add(TH.createBox({ a: 20, b: 45 + 4, c: 0.5, x: -10, y: 0 - 2, z: 0, color: "#336699", name: "floor2", isObject3D: "Object3D", texture: texture }));
+                        floorRight.position.set(-77.5 + 30 + 20, -2.5, 60);
+                        floorRight.translateX(10);
+                        TH.params.allMesh.push(floorRight.children[0]);
+                        TH.scene.add(floorRight);
+                    })
+
+
+
 
                     //创建机箱
 
                     for (var i = 0; i < 5; i++) {
-                        var jxBox = new THREE.Object3D();
-                        var jx = new THREE.Object3D();
-                        jxBox.add(TH.createBox({ a: 15, b: 40, c: 10, x: -7.5, y: 0, z: 0, color: "#333333", name: "jx" + i, isObject3D: "Object3D", border: ["#336655", "jxBoxBoder" + i, -7.5 * (1 + i) * 5 + 120 - 7.5, -9.5, -30] , texture: TH.loaderTexture(['../images/rack.jpg', 1, 1])}));
+                        (function (i) {
+                            TH.loaderTexture(['../images/rack.jpg', 1, 1], function (texture) {
+                                var jxBox = new THREE.Object3D();
+                                var jx = new THREE.Object3D();
+                                jxBox.add(TH.createBox({ a: 15, b: 40, c: 10, x: -7.5, y: 0, z: 0, color: "#333333", name: "jx" + i, isObject3D: "Object3D", border: ["#336655", "jxBoxBoder" + i, -7.5 * (1 + i) * 5 + 120 - 7.5, -9.5, -30], texture: texture }));
+                                jxBox.add(TH.createBox({ a: 15, b: 1, c: 10, x: -7.5, y: -20, z: 0, color: "#ff3333", name: "jxloading" + i, isObject3D: "Object3D", hide: false }));
+                                TH.loaderTexture(['../images/ggg.png', 1, 1], function (texture) {
+                                    var jxFloor = TH.createBox({ a: 15, b: 40, c: 0.2, x: 7.5, y: 0, z: 0, color: "#336655", name: "jxFloor" + i, isObject3D: "Object3D", texture: texture })
+                                    jxFloor.isOpen = false;
+                                    jx.add(jxFloor);
+                                    jx.position.set(-7.5, 0, 5);
+                                    jx.translateX(-7.5);
+                                    jxBox.add(jx)
+                                    jxBox.position.set(-7.5 * (1 + i) * 5 + 120, -9.5, -30)
+                                    TH.scene.add(jxBox);
 
-                        jxBox.add(TH.createBox({ a: 15, b: 1, c: 10, x: -7.5, y: -20, z: 0, color: "#ff3333", name: "jxloading" + i, isObject3D: "Object3D", hide: false }));
+                                    TH.params.allMesh.push(jxFloor);
+                                })
 
-                        var jxFloor = TH.createBox({ a: 15, b: 40, c: 0.2, x: 7.5, y: 0, z: 0, color: "#336655", name: "jxFloor" + i, isObject3D: "Object3D", texture: TH.loaderTexture(['../images/ggg.png', 1, 1]) })
-                        jxFloor.isOpen = false;
-                        jx.add(jxFloor);
-                        jx.position.set(-7.5, 0, 5);
-                        jx.translateX(-7.5);
-                        jxBox.add(jx)
-                        jxBox.position.set(-7.5 * (1 + i) * 5 + 120, -9.5, -30)
-                        TH.scene.add(jxBox);
+                            })
 
-                        TH.params.allMesh.push(jxFloor);
+                        })(i)
 
                     }
 
                     for (var i = 5; i < 10; i++) {
-                        var jxBox = new THREE.Object3D();
-                        var jx = new THREE.Object3D();
-                        jxBox.add(TH.createBox({ a: 15, b: 40, c: 10, x: -7.5, y: 0, z: 0, color: "#333333", name: "jx" + i, isObject3D: "Object3D", border: ["#446699", "jxBoxBoder" + i, -7.5 * (1 + i - 5) * 5 + 120 - 7.5, -9.5, 10], texture: TH.loaderTexture(['../images/rack.jpg', 1, 1]) }));
 
-                        jxBox.add(TH.createBox({ a: 15, b: 1, c: 10, x: -7.5, y: -20, z: 0, color: "#ff3333", name: "jxloading" + i, isObject3D: "Object3D", hide: false }));
+                        (function (i) {
+                            TH.loaderTexture(['../images/rack.jpg', 1, 1], function (texture) {
+                                var jxBox = new THREE.Object3D();
+                                var jx = new THREE.Object3D();
+                                jxBox.add(TH.createBox({ a: 15, b: 40, c: 10, x: -7.5, y: 0, z: 0, color: "#333333", name: "jx" + i, isObject3D: "Object3D", border: ["#446699", "jxBoxBoder" + i, -7.5 * (1 + i - 5) * 5 + 120 - 7.5, -9.5, 10], texture: texture }));
+                                jxBox.add(TH.createBox({ a: 15, b: 1, c: 10, x: -7.5, y: -20, z: 0, color: "#ff3333", name: "jxloading" + i, isObject3D: "Object3D", hide: false }));
+                                TH.loaderTexture(['../images/ggg.png', 1, 1], function (texture) {
+                                    var jxFloor = TH.createBox({ a: 15, b: 40, c: 0.2, x: 7.5, y: 0, z: 0, color: "#446699", name: "jxFloor" + i, isObject3D: "Object3D", texture: texture })
+                                    jxFloor.isOpen = false;
+                                    jx.add(jxFloor);
+                                    jx.position.set(-7.5, 0, 5);
+                                    jx.translateX(-7.5);
+                                    jxBox.add(jx)
+                                    jxBox.position.set(-7.5 * (1 + i - 5) * 5 + 120, -9.5, 10)
+                                    TH.scene.add(jxBox);
+                                    TH.params.allMesh.push(jxFloor);
+                                })
 
-                        var jxFloor = TH.createBox({ a: 15, b: 40, c: 0.2, x: 7.5, y: 0, z: 0, color: "#446699", name: "jxFloor" + i, isObject3D: "Object3D", texture: TH.loaderTexture(['../images/ggg.png', 1, 1]) });
-                        jxFloor.isOpen = false;
-                        jx.add(jxFloor);
-                        jx.position.set(-7.5, 0, 5);
-                        jx.translateX(-7.5);
-                        jxBox.add(jx)
-                        jxBox.position.set(-7.5 * (1 + i - 5) * 5 + 120, -9.5, 10)
-                        TH.scene.add(jxBox);
-                        TH.params.allMesh.push(jxFloor);
+                            })
+
+                        })(i)
+
+
+
+
+
+                        // var jxBox = new THREE.Object3D();
+                        // var jx = new THREE.Object3D();
+                        // jxBox.add(TH.createBox({ a: 15, b: 40, c: 10, x: -7.5, y: 0, z: 0, color: "#333333", name: "jx" + i, isObject3D: "Object3D", border: ["#446699", "jxBoxBoder" + i, -7.5 * (1 + i - 5) * 5 + 120 - 7.5, -9.5, 10], texture: TH.loaderTexture(['../images/rack.jpg', 1, 1]) }));
+
+                        // jxBox.add(TH.createBox({ a: 15, b: 1, c: 10, x: -7.5, y: -20, z: 0, color: "#ff3333", name: "jxloading" + i, isObject3D: "Object3D", hide: false }));
+
+                        // var jxFloor = TH.createBox({ a: 15, b: 40, c: 0.2, x: 7.5, y: 0, z: 0, color: "#446699", name: "jxFloor" + i, isObject3D: "Object3D", texture: TH.loaderTexture(['../images/ggg.png', 1, 1]) });
+
                     }
 
                     //创建路线球

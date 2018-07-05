@@ -39,7 +39,7 @@ let a = new L3D({
     ray: () => {
 
     },
-    creatObject: (TH) => {
+    createObj: (TH) => {
 
         TH.loaderModle(["./modle/obj/001.obj"], function (object) {
             object.traverse(function (child) {

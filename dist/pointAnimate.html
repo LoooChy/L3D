@@ -15,67 +15,21 @@
             background: url(images/3dbg1.png)no-repeat;
             background-size: cover;
         }
-
-        .ggg {
-            position: fixed;
-            width: 50px;
-            line-height: 20px;
-            color: #333333;
-            right: 48px;
-            background: #ffffff;
-            border: 1px solid #ffffff;
-            border-radius: 5px;
-            text-align: center;
-            padding: 4px 0;
-            cursor: pointer;
-        }
-
-        #ss {
-            bottom: 48px;
-            outline: none;
-        }
-
-        #gs {
-            display: none;
-            width: 80px;
-            bottom: 96px;
-        }
-
-        #msg {
-            display: none;
-            bottom: 144px;
-            width: auto;
-            transition: all .3s ease;
-        }
-
-        #canvas-frame {
+        #canvas-frame{
             width: 100%;
             height: 100%;
-        }
-
-        .msg {
-            padding: 0 8px;
-            cursor: default;
         }
     </style>
 </head>
 
 <body>
     <div id="canvas-frame"></div>
-    <button class="ggg" disabled id="ss">开始</button>
     <script src="./js/L3D.js"></script>
     <script>
         window.onload = function () {
             var prog = 0, cube1, cube2, scalePlanNum = 0, scaleNum = 0, cemareRouteFlag = false, routeFlag = true, moveBollFlag = false, chooseJxName, canClick = true;
-            var path = new THREE.Path();
-            var pathArrow = [{ x: -150, z: 0 }, { x: -150, z: 90 }, { x: -37.5, z: 90 }, { x: -37.5, z: 35 }, { x: 55, z: 35 }, { x: 55, z: -10 }, { x: -35, z: -10 }, { x: -35, z: -15 }];
-            for (var i = 0; i < pathArrow.length; i++) {
-                i == 0 ?
-                    path.moveTo(pathArrow[i].x, pathArrow[i].z) : path.lineTo(pathArrow[i].x, pathArrow[i].z);
-            }
             var kk;
             var positionFlag = 1
-            // var boxState = [10, 20, 20, 30, 10, 30, 10, 10, 20, 30]
             var positionsAll = [];
             var positions1 = [];
             var positions2 = [];
@@ -113,115 +67,14 @@
                     name: "light3"
                 }],
                 axis: {
-                    isOpen: true,//是否开启3d坐标系
+                    isOpen: false,//是否开启3d坐标系
                     length: 100//坐标长度
                 },
                 bindHandler: function (TH) {//绑定事件
-                    window.addEventListener('click', TH.ray);
-                    window.addEventListener('resize', TH.onResize, false);
-                    document.querySelector("#ss").addEventListener('click', function () {
-                        // TH.scene.getObjectByName("moveBoll");
-                        prog = 0;
-                        moveBollFlag = true;
-                    })
-
+                    
                 },
                 ray: function (TH, obj) {
-                    if (canClick) {
-                        canClick = false;
-                        var amObj1 = {//左边的门
-                            from: obj.object.parent.rotation,//动画开始的初始值
-                            to: { y: -Math.PI / 2 },//动画结束的目标值
-                            type: TWEEN.Easing.Exponential.Out,//动画的类型
-                            time: 1000,//持续时间
-                            startNow: true,//是否立即开始
-                            delay: 1000//动画延迟执行
-                        }
-                        var amObj2 = {//右边的门
-                            from: obj.object.parent.rotation,//动画开始的初始值
-                            to: { y: Math.PI / 2 },//动画结束的目标值
-                            type: TWEEN.Easing.Exponential.Out,//动画的类型
-                            time: 1000,//持续时间
-                            startNow: true,//是否立即开始
-                            delay: 1000//动画延迟执行
-                        }
-                        var amObj3 = {//打开机箱门
-                            from: obj.object.parent.rotation,//动画开始的初始值
-                            to: { y: -Math.PI / 2 },//动画结束的目标值
-                            type: TWEEN.Easing.Exponential.Out,//动画的类型
-                            time: 1000,//持续时间
-                            startNow: true,//是否立即开始
-                            delay: 1000//动画延迟执行
-                        }
-
-
-
-                        var amObj6 = {//关闭机箱门
-                            from: obj.object.parent.rotation,//动画开始的初始值
-                            to: { y: 0 },//动画结束的目标值
-                            type: TWEEN.Easing.Exponential.Out,//动画的类型
-                            time: 1000,//持续时间
-                            startNow: true,//是否立即开始
-                            delay: 1000//动画延迟执行
-                        }
-
-                        if (obj.object.name == "floor1") {
-                            TH.animateFn(amObj1, function () {
-                                canClick = true;
-                            })
-                        }
-                        if (obj.object.name == "floor2") {
-                            TH.animateFn(amObj2, function () {
-                                canClick = true;
-                            })
-                        }
-                        if (L.isExist(obj.object.name, "jxFloor")) {
-                            if (obj.object.isOpen == false) {
-                                TH.animateFn(amObj3, function () {
-                                    obj.object.isOpen = true;
-                                });
-                                chooseJxName = obj.object.name.charAt(obj.object.name.length - 1)
-                                TH.scene.getObjectByName("jx" + chooseJxName).material.visible = false;
-                                TH.scene.getObjectByName("jxloading" + chooseJxName).material.visible = true;
-                                var amObj4 = {//机箱内部的loading状态
-                                    from: TH.scene.getObjectByName("jxloading" + chooseJxName).scale,//动画开始的初始值
-                                    to: { y: 40 },//动画结束的目标值
-                                    type: TWEEN.Easing.Exponential.Out,//动画的类型
-                                    time: 1500,//持续时间
-                                    startNow: false,//是否立即开始
-                                    delay: 1000//动画延迟执行
-                                }
-
-                                var amObj5 = {//机箱内部的loading状态
-                                    from: TH.scene.getObjectByName("jxloading" + chooseJxName).position,//动画开始的初始值
-                                    to: { y: 0 },//动画结束的目标值
-                                    type: TWEEN.Easing.Exponential.Out,//动画的类型
-                                    time: 1500,//持续时间
-                                    startNow: false,//是否立即开始
-                                    delay: 1000//动画延迟执行
-                                }
-                                TH.animateFn(amObj4);
-                                TH.animateFn(amObj5, function () {
-                                    TH.scene.getObjectByName("jx" + chooseJxName).material.visible = true;
-                                    TH.scene.getObjectByName("jxloading" + chooseJxName).material.visible = false;
-                                    canClick = true;
-                                });
-                            } else {
-
-                                TH.animateFn(amObj6, function () {
-                                    obj.object.isOpen = false;
-                                    canClick = true;
-                                });
-                            }
-
-
-                        }
-                    }
-
-
-
-
-
+                    
                 },
                 createObj: function (TH) {//创建三维物体
                     var loader1 = new THREE.JSONLoader();
@@ -231,7 +84,7 @@
                             var bb = geometry.vertices.length
 
                             for (var i = 0; i < bb; i++) {
-                                var aa = TH.createSphere({ a: 0.3, b: 2, c: 2, x: geometry.vertices[i].x * 50 - 0, y: geometry.vertices[i].y * 50, z: geometry.vertices[i].z * 50, color: "#3498db", name: "men" + i, hide: false, isObject3D: true });
+                                var aa = TH.createSphere({ a: 0.3, b: 2, c: 2, x: geometry.vertices[i].x *Math.random()*500+500, y: geometry.vertices[i].y *Math.random()*500, z: geometry.vertices[i].z *Math.random()*500+150, color: "#3498db", name: "men" + i, hide: false, isObject3D: true });
                                 positions1.push({ x: geometry.vertices[i].x * 50 - 0, y: geometry.vertices[i].y * 50, z: geometry.vertices[i].z * 50 })
                                 TH.scene.add(aa)
                                 objects.push(aa)
@@ -274,45 +127,6 @@
                     }
                     var promis = new Promise(load1)
                     promis.then(load2).then(load3)
-
-                    // loader1.load("modle/m4.json", function (geometry) {
-                    //     var bb = geometry.vertices.length
-
-                    //     for (var i = 0; i < bb; i++) {
-                    //         var aa = TH.createSphere({ a: 0.3, b: 2, c: 2, x: geometry.vertices[i].x * 50 - 0, y: geometry.vertices[i].y * 50, z: geometry.vertices[i].z * 50, color: "#3498db", name: "men" + i, hide: false, isObject3D: true });
-                    //         positions1.push({ x: geometry.vertices[i].x * 50 - 0, y: geometry.vertices[i].y * 50, z: geometry.vertices[i].z * 50 })
-                    //         TH.scene.add(aa)
-                    //         objects.push(aa)
-                    //     }
-
-                    //     var aaa;
-                    //     loader1.load("modle/m3.json", function (geometry) {
-                    //         // geometry.rotateX(-Math.PI/2)
-                    //         // geometry.rotation.x = -Math.PI/2;
-                    //         var cc = geometry.vertices.length
-                    //         for (var i = 0; i < cc; i++) {
-                    //             var aas = TH.createSphere({ a: 0.3, b: 2, c: 2, x: geometry.vertices[i].x * 100 + 100, y: geometry.vertices[i].y * 100, z: geometry.vertices[i].z * 100, color: "#3498db", name: "boll" + i, hide: false, isObject3D: true });
-                    //             positions2.push({ x: geometry.vertices[i].x * 100 + 100, y: geometry.vertices[i].y * 100, z: geometry.vertices[i].z * 100 })
-                    //             objects.push(aas)
-                    //         }
-                    //         loader1.load("modle/m2.json", function (geometry) {
-                    //             // geometry.rotateX(-Math.PI/2)
-                    //             // geometry.rotation.x = -Math.PI/2;
-                    //             var ccs = geometry.vertices.length
-                    //             for (var i = 0; i < ccs; i++) {
-                    //                 var aass = TH.createSphere({ a: 0.3, b: 2, c: 2, x: geometry.vertices[i].x * 100 + 100, y: geometry.vertices[i].y * 100, z: geometry.vertices[i].z * 100, color: "#3498db", name: "bui" + i, hide: false, isObject3D: true });
-                    //                 positions3.push({ x: geometry.vertices[i].x * 100 + 100, y: geometry.vertices[i].y * 100, z: geometry.vertices[i].z * 100 })
-                    //                 // TH.scene.add(aas)
-                    //                 objects.push(aass)
-                    //             }
-                    //             positionsAll = [...positions1, ...positions2, ...positions3]
-                    //             transition(TH)
-
-                    //         });
-
-                    //     });
-                    // });
-
 
                     function transition(TH) {
                         var TH = TH
@@ -455,10 +269,7 @@
                     }
                 },
                 animate: function (TH) {//创建动画
-
-
                     var time = performance.now();
-
                     for (var i = 0, l = objects.length; i < l; i++) {
 
                         var object = objects[i];
@@ -466,39 +277,6 @@
                         object.scale.set(scale * 2, scale * 2, scale * 2);
 
                     }
-                    // //创建路线
-                    // // pathArrow
-
-                    // if (routeFlag) {
-                    //     prog += 0.003;
-                    //     var allpoint = path.getPointAt(prog);
-                    //     if (allpoint) {
-                    //         TH.createSphere({ a: 1.5, b: 20, c: 20, x: allpoint.x, y: -29, z: allpoint.y, color: "#3498db", name: "path" });
-                    //     }
-                    //     if (!allpoint) {
-                    //         routeFlag = false;
-                    //         document.querySelector("#ss").removeAttribute("disabled")
-                    //     } else {
-                    //         routeFlag = true
-                    //     }
-                    // }
-
-                    // // TH.scene.getObjectByName("moveBoll");
-
-                    // if (moveBollFlag) {
-                    //     prog += 0.001;
-                    //     var allpoint = path.getPointAt(prog);
-                    //     if (allpoint) {
-                    //         TH.scene.getObjectByName("moveBoll").position.set(allpoint.x, -23, allpoint.y)
-                    //     }
-                    //     // if (!allpoint) {
-                    //     //     routeFlag = false
-                    //     // } else {
-                    //     //     routeFlag = true
-                    //     // }
-                    // }
-
-
                 }
             })
         }
