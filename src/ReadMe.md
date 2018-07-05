@@ -221,18 +221,19 @@ name | 光的名称 | string
 ### 用图片作为物体的材质
 ```javascript
     ...
-    TH.createBox({
-            a: 30,
-            b: 10,
-            c: 5,
-            x: 0,
-            y: 0,
-            z: 0,
-            color: "#334455",
-            // specular:"#ffffff",
-            name: "cube",
-            texture: TH.loaderTexture(['../images/brick_diffuse.jpg', 2, 0.5])
-        });
+    TH.loaderTexture(['../images/brick_diffuse.jpg', 2, 0.5], function (texture) {
+                TH.createBox({
+                    a: 30,
+                    b: 10,
+                    c: 5,
+                    x: 0,
+                    y: 0,
+                    z: 0,
+                    color: "#ffffff",
+                    name: "cube",
+                    texture: texture
+                });
+            })
     ...
 ```
 ### 效果演示
