@@ -290,10 +290,12 @@ name | 光的名称 | string
         详细代码见demo6.html
         
 ### 我们来介绍一下该例子当中用到的东西
-        minDistance：缩放时最近的距离，数字，例如(100)
-        maxDistance: 缩放时最远的距离，数字，例如(100)
-        minPolarAngle: 垂直方向上控制的最小角度，角度,例如(Math.PI)
-        maxPolarAngle: 垂直方向上控制的最大角度，角度,例如(Math.PI)
-        minAzimuthAngle: 水平方向上控制的最小角度，角度,例如(Math.PI)
-        maxAzimuthAngle: 水平方向上控制的最大角度，角度,例如(Math.PI)
+主属性 | 作用 | 类型
+-|:-:|-:
+minDistance|缩放时最近的距离|数字，例如(100)
+maxDistance| 缩放时最远的距离|数字，例如(100)
+minPolarAngle| 垂直方向上控制的最小角度|角度,例如(Math.PI)
+maxPolarAngle| 垂直方向上控制的最大角度|角度,例如(Math.PI)
+minAzimuthAngle| 水平方向上控制的最小角度|角度,例如(Math.PI)
+maxAzimuthAngle| 水平方向上控制的最大角度|角度,例如(Math.PI)
     
