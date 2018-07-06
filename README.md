@@ -272,8 +272,28 @@ name | 光的名称 | string
     材质最终显示的颜色是物体的颜色与材质的本身的颜色以及光照效果三者叠加生成的。
     如果只需要显示材质的颜色，可以把color去掉。
 
-### 使用动画函数来创建一个动画
+### 使用控制器来控制场景的一些交互
 
-     未完待续...
-
+```javascript
+    ...
+    controls: {
+                minDistance:100,//缩放时最近的距离
+                maxDistance:500,//缩放时最远的距离
+                minPolarAngle:0,//垂直方向上控制的最小角度
+                maxPolarAngle:Math.PI/2,//垂直方向上控制的最大角度
+                minAzimuthAngle:Math.PI/2,//水平方向上控制的最小角度
+                maxAzimuthAngle:Math.PI,//水平方向上控制的最大角度
+            }
+    ...
+```
+### 效果演示
+        详细代码见demo6.html
+        
+### 我们来介绍一下该例子当中用到的东西
+        minDistance：缩放时最近的距离，数字，例如(100)
+        maxDistance: 缩放时最远的距离，数字，例如(100)
+        minPolarAngle: 垂直方向上控制的最小角度，角度,例如(Math.PI)
+        maxPolarAngle: 垂直方向上控制的最大角度，角度,例如(Math.PI)
+        minAzimuthAngle: 水平方向上控制的最小角度，角度,例如(Math.PI)
+        maxAzimuthAngle: 水平方向上控制的最大角度，角度,例如(Math.PI)
     
