@@ -260,7 +260,7 @@
                     })
 
                     //房间墙壁玻璃
-                    TH.createBox({ a: 95, b: 40 + 5, c: 2, x: 40, y: -2.5, z: 60, color: "#998877", name: "window1",materialType:"MeshPhongMaterial" });
+                    TH.createBox({ a: 95, b: 40 + 5, c: 2, x: 40, y: -2.5, z: 60, color: "#998877", name: "window1",materialType:"MeshStandardMaterial" });
                     TH.scene.getObjectByName("window1").material.transparent = true;
                     TH.scene.getObjectByName("window1").material.opacity = 0.6;
 
@@ -273,7 +273,7 @@
                         TH.createBox({ a: 5, b: 5, c: 250, x: -197.5, y: -24.3 + 20 + 17.5, z: 0, color: "#665544", name: "wallLeft3", texture: texture,materialType:"MeshPhongMaterial" });
                     })
                     //外侧墙壁玻璃
-                    TH.createBox({ a: 2, b: 30, c: 250, x: -197.5, y: -24.3 + 20, z: 0, color: "#334455", name: "wallLeft2",materialType:"MeshPhongMaterial" });
+                    TH.createBox({ a: 2, b: 30, c: 250, x: -197.5, y: -24.3 + 20, z: 0, color: "#334455", name: "wallLeft2",materialType:"MeshStandardMaterial" });
                     TH.scene.getObjectByName("wallLeft2").material.transparent = true;
                     TH.scene.getObjectByName("wallLeft2").material.opacity = 0.6;
 
@@ -285,7 +285,7 @@
                         TH.createBox({ a: 5, b: 5, c: 250, x: 197.5, y: -24.3 + 20 + 17.5, z: 0, color: "#665544", name: "wallRight3", texture: texture,materialType:"MeshPhongMaterial" });
                     })
                     //外侧墙壁玻璃
-                    TH.createBox({ a: 2, b: 30, c: 250, x: 197.5, y: -24.3 + 20, z: 0, color: "#334455", name: "wallRight2",materialType:"MeshPhongMaterial" });
+                    TH.createBox({ a: 2, b: 30, c: 250, x: 197.5, y: -24.3 + 20, z: 0, color: "#334455", name: "wallRight2",materialType:"MeshStandardMaterial" });
                     TH.scene.getObjectByName("wallRight2").material.transparent = true;
                     TH.scene.getObjectByName("wallRight2").material.opacity = 0.6;
 
