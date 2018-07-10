@@ -318,6 +318,7 @@ minAzimuthAngle| 水平方向上控制的最小角度|角度,例如(Math.PI)
 maxAzimuthAngle| 水平方向上控制的最大角度|角度,例如(Math.PI)
 
 ### 认识光源
+
 ```javascript
     ...
     light: [{
@@ -360,3 +361,21 @@ maxAzimuthAngle| 水平方向上控制的最大角度|角度,例如(Math.PI)
     ...
 ```
     
+### 效果演示
+        详细代码见demo6.html
+
+![avatar](src/images/demo/demo7.jpg)
+
+### 知识讲解
+    本例中，一共用到了5中光源：环境光、平行光、聚光灯、面光源、点光源。
+    如图所示：不同的光源对于不同的材质有着不同的影响。
+    
+    AmbientLight光源影响整个场景，它的光线没有特定来源但是又无处不在，它不能影响阴影生成，并且不能作为唯一光源。使用其他光源的同事使用AmbientLight，目的是弱化阴影和添加一些颜色，其中AmbientLight，PointLight，SpotLight和DirectionalLight是基础光源，HemisphereLight，AreaLight，LensFlare是有特殊用途的光源。创建AmbientLight非常简单，不需要指定位置，只需要指定颜色（十六进制）
+
+    PointLight点光源就是个小太阳，任何方向都能照射。点光源除了像AmbientLight场景光源那样设置颜色 添加到场景中以外
+
+    SpotLight具有锥形效果的光源，可以产生阴影，类似我们日常生活中的手电筒
+
+    方向光就类似于遥远的太阳，由于距离很远很远，随意照射到场景中都是平行光源，而且不会随着距离变大而衰减，被照射的整个区域的光强是一样的。
+
+    面光源，就是一个平面发出来的光
