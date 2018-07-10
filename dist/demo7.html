@@ -27,11 +27,9 @@
     <div id="canvas-frame"></div>
     <script src="./js/L3D.js"></script>
     <script>
-
         window.onload = function () {
             var elementWidth = L.select("#canvas-frame").offsetWidth,
-                elementHeight = L.select("#canvas-frame").offsetHeight,
-                roa = 0;
+                elementHeight = L.select("#canvas-frame").offsetHeight;
             new L3D({
                 el: "#canvas-frame",
                 viewport: [elementWidth, elementHeight],
@@ -52,8 +50,31 @@
                 }, {
                     type: "平行光",
                     position: [100, 50, 100],
-                    intensity: 1,
+                    intensity: 0.1,
                     color: "#ffffff",
+                    name: "light2"
+                },
+                {
+                    type: "聚光灯",
+                    position: [-10, 50, 0],
+                    intensity: 0.1,
+                    color: "#ffffff",
+                    name: "light2"
+                },
+                {
+                    type: "面光源",
+                    position: [0, 6, 0],
+                    width: 10,
+                    height: 10,
+                    intensity: 2,
+                    color: 0xffffff,
+                    name: "light1"
+                },
+                {
+                    type: "点光源",
+                    position: [10, 10, -20],
+                    intensity: 0.01,
+                    color: "#ff00ff",
                     name: "light2"
                 }],
                 axis: {
@@ -67,26 +88,29 @@
 
                 },
                 createObj: function (TH) {
-                    TH.createBox({
-                        a: 30,
-                        b: 10,
-                        c: 5,
-                        x: 0,
-                        y: 0,
-                        z: 0,
-                        color: "#334455",
-                        name: "cube",
-                        materialType:"MeshPhongMaterial"
-                    });
+                    //平面
+                    TH.createBox({a: 80,b: 1,c: 80,x: 0,y: 0,z: 0,color: "#334477",materialType:"MeshStandardMaterial"});
+
+                    //球体
+                    TH.createSphere({ a: 5, b: 25, c: 25, x: -20, y: 6, z: 0, color: "#224466",materialType:"MeshLambertMaterial" })
+
+                    //小球体
+                    TH.createSphere({ a: 0.5, b: 25, c: 25, x: 10, y: 10, z: -20, color: "#ff00ff" })
+
+                    //立方体
+                    TH.createBox({ a: 5, b: 10, c: 10, x: 20, y: 5, z: 0, color: "#224466",materialType:"MeshPhongMaterial" })
+
+                    //立方体
+                    TH.createBox({ a: 5, b: 10, c: 10, x: -10, y: 5, z: 20, color: "#224466" })
                 },
                 animate: function (TH) {
-                    roa += 0.1
-                    TH.scene.getObjectByName("cube").rotation.y = roa
+
                 }
             })
         }
 
     </script>
+
 </body>
 
 </html>

@@ -107,7 +107,7 @@ animate | 动画函数| 必填
                 y: 0,
                 z: 0,
                 color: "#334455",
-                name: "cube", 
+                name: "cube"
                 });
 
         },
@@ -156,6 +156,20 @@ name | 物体的名称 | string
                 color: "#ffffff",
                 name: "light2"
             }],
+    createObj: function (TH) {
+            TH.createBox({ 
+                a: 30,
+                b: 10,
+                c: 5,
+                x: 0,
+                y: 0,
+                z: 0,
+                color: "#334455",
+                name: "cube", 
+                materialType:"MeshPhongMaterial"
+                });
+
+        },
     ...
 ```
 
@@ -175,12 +189,14 @@ position | 光源的位置,[x,y,z] | array
 intensity | 光照强度 | number
 color | 光的颜色，可以是8进制和16进制,8进制不用引号 | string
 name | 光的名称 | string
+materialType | 材质类型，默认是不受光照影响的材质（MeshBasicMaterial） | string
 
 ### 知识讲解3
     在本例当中，加入了两种光源，环境光、平行光。
     环境光就是自然光，当场景中存在环境光时，所有物体都将表现为同样的明暗程度，不会让物体产生阴影。
     平行光是没有光照强度衰减的光源，方向由平行光的位置和原点（0，0，0）来决定，与物体的远近无关，平行光的光照强度默认是1，变化范围是0~1之间。会让物体产生阴影。
     点光源是由一个点向四面八方发散的光源，不会让物体产生阴影。
+    materialType一共有三种：MeshBasicMaterial（不受光照影响），MeshStandardMaterial（受光照影响，如镜面），MeshPhongMaterial（受光照影响，反光），MeshLambertMaterial（受光照影响，不反光）
 
 ### 物体在场景当中的运动
 
@@ -227,7 +243,9 @@ name | 光的名称 | string
                             z: 0,
                             color: "#ffffff",
                             name: "cube",
-                            texture: texture
+                            texture: texture,
+                            materialType:"MeshPhongMaterial"
+
                         });
                     })
     ...
@@ -298,4 +316,47 @@ minPolarAngle| 垂直方向上控制的最小角度|角度,例如(Math.PI)
 maxPolarAngle| 垂直方向上控制的最大角度|角度,例如(Math.PI)
 minAzimuthAngle| 水平方向上控制的最小角度|角度,例如(Math.PI)
 maxAzimuthAngle| 水平方向上控制的最大角度|角度,例如(Math.PI)
+
+### 认识光源
+```javascript
+    ...
+    light: [{
+                    type: "环境光",
+                    position: [0, 50, 0],
+                    intensity: 1,
+                    color: "#ffffff",
+                    name: "light1"
+                }, {
+                    type: "平行光",
+                    position: [100, 50, 100],
+                    intensity: 1,
+                    color: "#ffffff",
+                    name: "light2"
+                },
+                {
+                    type: "聚光灯",
+                    position: [-10, 50, 0],
+                    intensity: 1,
+                    color: "#ffffff",
+                    name: "light2"
+                },
+                {
+                    type: "面光源",
+                    position: [0, 6, 0],
+                    width: 10,
+                    height: 10,
+                    intensity: 2,
+                    color: 0xffffff,
+                    name: "light1"
+                },
+                {
+                    type: "点光源",
+                    position: [10, 10, -20],
+                    intensity: 1,
+                    color: "#ff00ff",
+                    name: "light2"
+                }
+            ]
+    ...
+```
     

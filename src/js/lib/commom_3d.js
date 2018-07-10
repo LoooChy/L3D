@@ -83,39 +83,68 @@ function lglt2xyz(longitude, latitude, radius) {
 }
 
 //通过x,y,z指定旋转中心，obj是要旋转的对象
-function changePivot(x,y,z,obj){
+function changePivot(x, y, z, obj) {
     let wrapper = new THREE.Object3D();
-          wrapper.position.set(x,y,z);
-         wrapper.add(obj);
-         obj.position.set(-x,-y,-z);
-         return wrapper;
- }
+    wrapper.position.set(x, y, z);
+    wrapper.add(obj);
+    obj.position.set(-x, -y, -z);
+    return wrapper;
+}
 
 //设置导入模型的中心点
 geometry.computeBoundingBox();
 geometry.center()
 
 //创建边框
-function creatBorder(){
+function creatBorder() {
     // 方法1：
-    var mesh = new THREE.Mesh(geom,material);
+    var mesh = new THREE.Mesh(geom, material);
 
     scene.add(mesh);
 
-    border = new THREE.BoxHelper( mesh,0x0dc3b4 );//设置边框，这个边框不会旋转
+    border = new THREE.BoxHelper(mesh, 0x0dc3b4);//设置边框，这个边框不会旋转
 
-    scene.add( border );
+    scene.add(border);
 
-// 用这种方法，比如我要旋转立方体，边框不会跟着改变。
+    // 用这种方法，比如我要旋转立方体，边框不会跟着改变。
 
-// 方法2：
-    var mesh = new THREE.Mesh(geom,material);
+    // 方法2：
+    var mesh = new THREE.Mesh(geom, material);
 
     scene.add(mesh);
 
-    edges = new THREE.EdgesHelper( mesh, 0x1535f7 );//设置边框，可以旋转
+    edges = new THREE.EdgesHelper(mesh, 0x1535f7);//设置边框，可以旋转
 
-    scene.add( edges );
+    scene.add(edges);
 
-// 用这种方法，比如我要旋转立方体，边框会跟着改变。
+    // 用这种方法，比如我要旋转立方体，边框会跟着改变。
+}
+
+
+function calculate3xyzToDiv2xy() {
+    //获取到窗口的一半高度和一半宽度
+    let halfWidth = window.innerWidth / 2;
+    let halfHeight = window.innerHeight / 2;
+
+    let vector1 = cube.position.clone().project(camera);
+    let vector2 = cube2.position.clone().project(camera);
+    let vector3 = cube3.position.clone().project(camera);
+
+    //修改第一个的div的位置
+    $(".one").css({
+        left: vector1.x * halfWidth + halfWidth,
+        top: -vector1.y * halfHeight + halfHeight
+    });
+
+
+    $(".two").css({
+        left: vector2.x * halfWidth + halfWidth,
+        top: -vector2.y * halfHeight + halfHeight
+    });
+
+
+    $(".three").css({
+        left: vector3.x * halfWidth + halfWidth,
+        top: -vector3.y * halfHeight + halfHeight
+    });
 }
